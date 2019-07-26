@@ -138,6 +138,7 @@ DECLARE_int64(seed);
 DECLARE_int64(memstepsize);
 DECLARE_int64(reportiters);
 DECLARE_double(pcttraineval);
+DECLARE_int64(runtimeLayer);
 
 /* ========== ARCHITECTURE OPTIONS ========== */
 

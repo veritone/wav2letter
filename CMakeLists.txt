@@ -236,3 +236,14 @@ target_link_libraries(
   Decoder
   wav2letter++
   )
+
+# ----------------------------- Feature Extraction ------------------
+add_executable(
+  FeatureExtract
+  FeatureExtract.cpp
+  )
+
+target_link_libraries(
+  FeatureExtract
+  wav2letter++
+  )

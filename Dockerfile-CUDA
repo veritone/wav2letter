@@ -6,13 +6,16 @@
 
 FROM wav2letter/wav2letter:cuda-base-latest
 
+ARG GITHUB_ACCESS_TOKEN
+
 RUN mkdir /root/wav2letter
 COPY . /root/wav2letter
 
 # ==================================================================
 # flashlight https://github.com/facebookresearch/flashlight.git
 # ------------------------------------------------------------------
-RUN cd /root && git clone --recursive https://github.com/facebookresearch/flashlight.git && \
+RUN git config --global url."https://${GITHUB_ACCESS_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+RUN cd /root && git clone --recursive https://github.com/veritone/flashlight.git && \
     cd /root/flashlight && mkdir -p build && \
     cd build && cmake .. -DCMAKE_BUILD_TYPE=Release -DFLASHLIGHT_BACKEND=CUDA && \
     make -j8 && make install && \

@@ -6,14 +6,17 @@
 
 FROM wav2letter/wav2letter:cpu-base-latest
 
+ARG GITHUB_ACCESS_TOKEN
+
 RUN mkdir /root/wav2letter
 COPY . /root/wav2letter
 
 # ==================================================================
 # flashlight https://github.com/facebookresearch/flashlight.git
 # ------------------------------------------------------------------
+RUN git config --global url."https://${GITHUB_ACCESS_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 RUN export MKLROOT=/opt/intel/mkl && \
-    cd /root && git clone --recursive https://github.com/facebookresearch/flashlight.git && \
+    cd /root && git clone --recursive https://github.com/veritone/flashlight.git && \
     cd flashlight && mkdir -p build && cd build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release -DFLASHLIGHT_BACKEND=CPU && \
     make -j8 && make install && \

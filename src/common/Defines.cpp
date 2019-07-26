@@ -131,6 +131,8 @@ DEFINE_double(
     100,
     "percentage of training set (by number of utts) to use for evaluation");
 
+DEFINE_int64(runtimeLayer, 0, "layer to run NN to for feature extration");
+
 // ARCHITECTURE OPTIONS
 DEFINE_string(arch, "default", "network architecture");
 DEFINE_string(criterion, kAsgCriterion, "training criterion");
